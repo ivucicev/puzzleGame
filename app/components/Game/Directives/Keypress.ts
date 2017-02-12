@@ -13,9 +13,11 @@
                 try {
                     document.body.addEventListener('keydown', keypresEvent);​​​​​​​
                     scope.$on('$destroy', () => {
+                        // cleanup if user goes to another view
                         document.body.removeEventListener('keydown', keypresEvent);​​​​​​​
                     });
                 } catch (e) {
+                    // clean
                     document.body.removeEventListener('keydown', keypresEvent);​​​​​​​
                 }
             }

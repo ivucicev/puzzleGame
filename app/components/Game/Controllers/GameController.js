@@ -11,12 +11,15 @@
         this.init = () => {
             this.generatedWord = GameService.scrambleWord();
             this.answer = new Array(this.generatedWord.word.length);
-            console.log(this.answer);
         };
         this.scrambleCurrentWord = () => {
         };
         this.handleUserInput = ($event) => {
-            console.log($event.key);
+            if (this.currentIndex >= this.generatedWord.word.length)
+                return;
+            console.log(this.answer);
+            this.answer[this.currentIndex] = $event.key;
+            this.currentIndex++;
         };
         this.init();
     }
