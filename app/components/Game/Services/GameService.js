@@ -1,15 +1,19 @@
 (() => {
     "use strict";
     angular.module('puzzleGame.Game')
-        .service('GameService', [GameService]);
-    function GameService() {
+        .service('GameService', ['FirebaseService', GameService]);
+    function GameService(FirebaseService) {
         let GameService = {
             _usedWords: [],
             scrambleWord: () => {
+                let count = FirebaseService.getWordsCount();
+                count.then(s => console.log(s.val(), s.numChildren(), "SND"));
+                let getter = FirebaseService.getWord(3);
+                getter.then(s => console.log(s.val(), s.numChildren(), "SND"));
                 let word;
                 // avoid word repeat
                 do {
-                    word = TestWords[Math.round(Math.random() * (TestWords.length - 1))].toUpperCase();
+                    word = TestWords[Math.round(Math.random() * (TestWords.length - 1))];
                 } while (GameService._usedWords.indexOf(word) > -1);
                 let scrambled = word.split("");
                 let l = scrambled.length;
