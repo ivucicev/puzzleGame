@@ -3,7 +3,6 @@
     angular.module('puzzleGame.Game')
         .controller('GameController', ['GameService', GameController]);
     function GameController(GameService) {
-        let self = this;
         this.generatedWord = {};
         this.answer = [];
         this.currentIndex = 0;
@@ -38,6 +37,7 @@
         };
         // allow only characters
         this.keyValid = keyCode => keyCode >= 65 && keyCode <= 90;
+        // check if pressed key is backspace or left arrow
         this.keyBackspace = keyCode => keyCode == 8 || keyCode == 37;
         // triggered from directive, which listens for keypress
         this.handleUserInput = ($event) => {
@@ -53,6 +53,7 @@
                 this.decreaseScore();
             }
         };
+        // "ctor()"
         this.init();
     }
 })();
