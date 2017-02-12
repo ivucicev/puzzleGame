@@ -1,12 +1,12 @@
 <div class="game-view" class="row" ng-keydown="Game.handleUserInput">
     <h1>GAME Window</h1>
     <h1>Time:
-        <timer></timer>
+        <timer>40</timer>
     </h1>
     <h1>Score: {{Game.score}}</h1>
     <h2>{{Game.generatedWord.scrambled}}</h2>
-    <h2 class="underscores" ng-repeat="a in Game.answer track by $index">
-        {{a ? a : '_'}} &nbsp;
+    <h2 class="underscores" ng-repeat="char in Game.answer track by $index">
+        {{char ? char : '_'}} &nbsp;
     </h2>
 </div>
 <keypress></keypress>

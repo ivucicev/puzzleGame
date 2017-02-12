@@ -32,6 +32,9 @@
             let score = Math.floor(Math.pow(1.95, (this.generatedWord.word.length / 3))) - this.currentScoreDecrease;
             this.score += score >= 0 ? score : 0;
         }
+        this.timesUp = () => {
+            console.log("TIMES UP!")
+        }
         // allow only characters
         this.keyValid = (keyCode) => {
             if (keyCode >= 65 && keyCode <= 90) return true;
