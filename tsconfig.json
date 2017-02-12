@@ -4,8 +4,9 @@
         "module": "commonjs",
         "sourceMap": true,
         "watch": true,
-        "filesGlob": [
-            "./typings/index.d.ts"
+        "types": [
+            // add node as an option
+            "angular"
         ]
     }
 }
