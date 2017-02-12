@@ -33,7 +33,7 @@
             this.score += score >= 0 ? score : 0;
         }
         this.timesUp = () => {
-            console.log("TIMES UP!")
+            
         }
         // allow only characters
         this.keyValid = (keyCode) => {
@@ -49,6 +49,7 @@
         }
         // triggered from directive, which listens for keypress
         this.handleUserInput = ($event) => {
+            if (this.currentIndex > this.generatedWord.word.length) return;
             if (this.keyValid($event.keyCode)) {
                 this.answer[this.currentIndex] = $event.key.toUpperCase();
                 this.currentIndex++;
