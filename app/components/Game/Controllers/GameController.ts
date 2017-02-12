@@ -8,24 +8,22 @@
         this.answer = [];
         this.currentIndex = 0;
         this.score = 0;
+        this.currentScoreDecrease = 0;
         this.init = () => {
             this.generatedWord = GameService.scrambleWord();
             this.answer = new Array(this.generatedWord.word.length);
         }
-        this.scrambleCurrentWord = () => {
-
-        }
         this.validateAnswer = () => {
-            console.log(this.answer.join(''))
             if (this.generatedWord.word === this.answer.join('')) {
                 this.increaseScore();
             } 
         }
         this.decreaseScore = () => {
-            if (this.score > 0) this.score--;
+            this.currentScoreDecrease++;
         }
         this.increaseScore = () => {
-            this.score += Math.floor(1.95 ^ (this.generatedWord.word.length / 3));
+            let score = Math.floor(Math.pow(1.95, (this.generatedWord.word.length / 3))) - this.currentScoreDecrease;
+            this.score += score >= 0 ? score : 0;
         }
         // allow only characters
         this.keyValid = (keyCode) => {
@@ -33,22 +31,19 @@
             return false;
         }
         this.keyBackspace = (keyCode) => {
-            if (keyCode == 65 || keyCode == 37) return false;
-            this.decreaseScore();
-            this.answer[this.currentIndex] = undefined;
-            this.currentIndex--;
+            if (keyCode == 8 || keyCode == 37) {
+                this.decreaseScore();
+                this.answer[this.currentIndex] = undefined;
+                this.currentIndex--;
+            }
         }
         this.handleUserInput = ($event) => {
-            if (this.currentIndex >= this.generatedWord.word.length) {
-                this.validateAnswer();
-                return;
-            }
             if (this.keyValid($event.keyCode)) {
                 this.answer[this.currentIndex] = $event.key.toUpperCase();
                 this.currentIndex++;
                 if (this.currentIndex >= this.generatedWord.word.length) this.validateAnswer();
             } else if (this.keyBackspace($event.keyCode)) {
-
+                this.decreaseScore();
             }
         }
         this.init();
