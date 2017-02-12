@@ -3,6 +3,9 @@
         "target": "es6",
         "module": "commonjs",
         "sourceMap": true,
-        "watch": true
+        "watch": true,
+        "filesGlob": [
+            "./typings/index.d.ts"
+        ]
     }
 }
