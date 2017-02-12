@@ -5,7 +5,7 @@
     function GameService() {
         return {
             scrambleWord: () => {
-                let word = TestWords[Math.round(Math.random() * (TestWords.length - 1))];
+                let word = TestWords[Math.round(Math.random() * (TestWords.length - 1))].toUpperCase();
                 console.log(word);
                 let scrambled = word.split("");
                 let l = scrambled.length;
@@ -17,7 +17,7 @@
                 }
                 return {
                     word: word,
-                    scrambled: scrambled.join("").toUpperCase()
+                    scrambled: scrambled.join("")
                 };
             }
         };
