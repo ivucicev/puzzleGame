@@ -27,6 +27,8 @@
         }
         this.decreaseScore = () => {
             this.currentScoreDecrease++;
+            this.currentIndex--;
+            this.answer[this.currentIndex] = undefined;
         }
         this.increaseScore = () => {
             let score = Math.floor(Math.pow(1.95, (this.generatedWord.word.length / 3))) - this.currentScoreDecrease;
@@ -36,20 +38,12 @@
             
         }
         // allow only characters
-        this.keyValid = (keyCode) => {
-            if (keyCode >= 65 && keyCode <= 90) return true;
-            return false;
-        }
-        this.keyBackspace = (keyCode) => {
-            if (keyCode == 8 || keyCode == 37) {
-                this.decreaseScore();
-                this.currentIndex--;
-                this.answer[this.currentIndex] = undefined;
-            }
-        }
+        this.keyValid = keyCode => keyCode >= 65 && keyCode <= 90;
+        this.keyBackspace = keyCode => keyCode == 8 || keyCode == 37;
+
         // triggered from directive, which listens for keypress
         this.handleUserInput = ($event) => {
-            if (this.currentIndex > this.generatedWord.word.length) return;
+            if (this.currentIndex >= this.generatedWord.word.length && !this.keyBackspace($event.keyCode)) return;
             if (this.keyValid($event.keyCode)) {
                 this.answer[this.currentIndex] = $event.key.toUpperCase();
                 this.currentIndex++;
