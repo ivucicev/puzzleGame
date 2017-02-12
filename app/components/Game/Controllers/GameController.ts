@@ -13,8 +13,8 @@
             this.nextWord();
         }
         this.nextWord = () => {
+            // reset
             this.currentScoreDecrease = 0;
-            this.answer = [];
             this.currentIndex = 0;
             this.generatedWord = GameService.scrambleWord();
             this.answer = new Array(this.generatedWord.word.length);
@@ -40,8 +40,8 @@
         this.keyBackspace = (keyCode) => {
             if (keyCode == 8 || keyCode == 37) {
                 this.decreaseScore();
-                this.answer[this.currentIndex] = undefined;
                 this.currentIndex--;
+                this.answer[this.currentIndex] = undefined;
             }
         }
         // triggered from directive, which listens for keypress
@@ -50,7 +50,7 @@
                 this.answer[this.currentIndex] = $event.key.toUpperCase();
                 this.currentIndex++;
                 if (this.currentIndex >= this.generatedWord.word.length) this.validateAnswer();
-            } else if (this.keyBackspace($event.keyCode)) {
+            } else if (this.keyBackspace($event.keyCode) && this.currentIndex > 0) {
                 this.decreaseScore();
             }
         }
