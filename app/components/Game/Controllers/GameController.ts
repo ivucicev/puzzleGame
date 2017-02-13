@@ -27,7 +27,7 @@
                 self.generatedWord.word = v.val().toUpperCase();
                 self.generatedWord.scrambled = GameService.scrambleWord(self.generatedWord.word);
                 GameService.currentWord = self.generatedWord.word;
-                console.log(self.generatedWord.word);
+                console.log(self.generatedWord.word); // THIS IS INTENTIONAL, BECAUSE OF VERY HARD WORDS IN DICTIONARY
                 self.answer = new Array(self.generatedWord.word.length);
             });
         }
