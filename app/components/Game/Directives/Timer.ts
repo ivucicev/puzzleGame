@@ -1,8 +1,8 @@
 (() => {
     "use strict";
     angular.module('puzzleGame.Game')
-    .directive('timer', ['$interval', '$timeout', Timer]);
-    function Timer ($interval, $timeout) {
+    .directive('timer', ['$interval', '$timeout', 'GAME', Timer]);
+    function Timer ($interval, $timeout, GAME) {
         return {
             restrict: 'E',
             scope: {
@@ -11,7 +11,7 @@
             link: (scope, element) => {
                 let intvl = null;
                 try {
-                    let timer = 5;
+                    let timer = GAME.TIMER;
                     intvl = $interval(() => {
                         element.text(--timer);
                         if (timer == 0) {

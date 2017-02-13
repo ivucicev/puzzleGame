@@ -6,4 +6,7 @@
         'KEY_HIGHSCORES': 'highscores',
         'KEY_WORDS': 'words'
     })
+    .constant('GAME', {
+        'TIMER': 40,
+    })
 })();

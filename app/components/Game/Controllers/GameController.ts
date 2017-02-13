@@ -25,7 +25,6 @@
             this.currentIndex = 0;
             GameService.getNewWord().then(v => {
                 self.generatedWord.word = v.val().toUpperCase();
-                console.log(self.generatedWord.word)
                 self.generatedWord.scrambled = GameService.scrambleWord(self.generatedWord.word);
                 GameService.currentWord = self.generatedWord.word;
                 self.answer = new Array(self.generatedWord.word.length);
@@ -78,6 +77,11 @@
                 this.decreaseScore();
             }
         }
+
+        // restartsGame
+        this.restartGame = () => {
+            $window.location.reload();
+        } 
 
         // "ctor()"
         this.init();

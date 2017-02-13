@@ -36,6 +36,7 @@
                 return FirebaseService.getWord(index);
 
             },
+            
             clearUsedWords: () => GameService._usedWordsIndexes = [],
             validateWord: w => w === GameService.currentWord, 
         }
