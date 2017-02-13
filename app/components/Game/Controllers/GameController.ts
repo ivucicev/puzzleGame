@@ -1,8 +1,8 @@
 (() => {
     "use strict";
     angular.module('puzzleGame.Game')
-    .controller('GameController', ['GameService', '$state', GameController]);
-    function GameController (GameService, $state) {
+    .controller('GameController', ['GameService', '$location', GameController]);
+    function GameController (GameService, $location) {
 
         var self = this;
 
@@ -16,8 +16,8 @@
             this.nextWord();
         }
 
+        // reset && get next word
         this.nextWord = () => {
-            // reset
             this.currentScoreDecrease = 0;
             this.currentIndex = 0;
             GameService.getNewWord().then(v => {
@@ -29,6 +29,7 @@
             });
         }
 
+        // check if answer is correct
         this.validateAnswer = () => {
             if (GameService.validateWord(this.answer.join(''))) {
                 this.nextWord();
@@ -36,19 +37,22 @@
             } 
         }
 
+        // score penalty
         this.decreaseScore = () => {
             this.currentScoreDecrease++;
             this.currentIndex--;
             this.answer[this.currentIndex] = undefined;
         }
 
+        // add score according to penalty
         this.increaseScore = () => {
             let score = Math.floor(Math.pow(1.95, (this.generatedWord.word.length / 3))) - this.currentScoreDecrease;
             this.score += score >= 0 ? score : 0;
         }
 
+        // times up!
         this.timesUp = () => {
-            $state.go("")
+            $location.path("highscores");
         }
 
         // allow only characters
