@@ -18,22 +18,20 @@
             },
             scrambleWord: () => {
                 let wordCount = FirebaseService.getWordsCount();
-                // count.then(s => console.log(s.val(), s.numChildren(), "SND"));
-                // let getter = FirebaseService.getWord(3);
-                // getter.then(s => console.log(s.val(), s.numChildren(), "SND"));
                 let word, index;
+
                 // avoid word repeat
                 do {
                     index = Math.round(Math.random() * (wordCount - 1));
-                    word = TestWords[index].toUpperCase();
                 } while(GameService._usedWords.indexOf(index) > -1);
 
+                word = TestWords[index].toUpperCase();
                 let scrambled = GameService._scrambling(word);
                 GameService._usedWords.push(index);
 
                 return {
                     word: word,
-                    scrambled: scrambled.join("")
+                    scrambled: scrambled
                 }
 
             },
