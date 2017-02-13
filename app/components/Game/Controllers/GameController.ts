@@ -4,6 +4,8 @@
     .controller('GameController', ['GameService', GameController]);
     function GameController (GameService) {
 
+        var self = this;
+
         this.generatedWord = {};
         this.answer = [];
         this.currentIndex = 0;
@@ -18,8 +20,11 @@
             // reset
             this.currentScoreDecrease = 0;
             this.currentIndex = 0;
-            this.generatedWord = GameService.scrambleWord();
-            this.answer = new Array(this.generatedWord.word.length);
+            GameService.getNewWord().then(v => {
+                self.generatedWord.word = v.val().toUpperCase();
+                self.generatedWord.scrambled = GameService.scrambleWord(self.generatedWord.word);
+                self.answer = new Array(self.generatedWord.word.length);
+            });
         }
 
         this.validateAnswer = () => {

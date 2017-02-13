@@ -1,11 +1,11 @@
 (() => {
     "use strict";
     angular.module('puzzleGame.Game')
-    .service('GameService', ['FirebaseService', GameService]);
-    function GameService (FirebaseService) {
+    .service('GameService', ['FirebaseService', '$q', GameService]);
+    function GameService (FirebaseService, $q) {
         let GameService =  {
             _usedWordsIndexes: [],
-            _scrambling: (word) => {
+            scrambleWord: (word) => {
                 let scrambled = word.split("");
                 let l = scrambled.length;
                 for(let i = l - 1; i > 0; i--) {
@@ -16,7 +16,11 @@
                 }
                 return scrambled.join("");
             },
-            scrambleWord: () => {
+            getNewWord: () => {
+
+                // defer because of firebase asynchronisity
+                let deferred = $q.defer();
+
                 let wordCount = FirebaseService.getWordsCount();
                 let word, index;
 
@@ -25,14 +29,8 @@
                     index = Math.round(Math.random() * (wordCount - 1));
                 } while(GameService._usedWordsIndexes.indexOf(index) > -1);
 
-                word = TestWords[index].toUpperCase();
-                let scrambled = GameService._scrambling(word);
                 GameService._usedWordsIndexes.push(index);
-
-                return {
-                    word: word,
-                    scrambled: scrambled
-                }
+                return FirebaseService.getWord(index);
 
             },
             clearUsedWords: () => GameService._usedWordsIndexes = []
