@@ -5,28 +5,31 @@
     function GameService (FirebaseService) {
         let GameService =  {
             _usedWords: [],
-            scrambleWord: () => {
-                let count = FirebaseService.getWordsCount();
-                count.then(s => console.log(s.val(), s.numChildren(), "SND"));
-                let getter = FirebaseService.getWord(3);
-                getter.then(s => console.log(s.val(), s.numChildren(), "SND"));
-                let word;
-                // avoid word repeat
-                do {
-                   word = TestWords[Math.round(Math.random() * (TestWords.length - 1))];
-                } while(GameService._usedWords.indexOf(word) > -1);
-
+            _scrambling: (word) => {
                 let scrambled = word.split("");
                 let l = scrambled.length;
-                
                 for(let i = l - 1; i > 0; i--) {
                     const j = Math.floor(Math.random() * (i + 1));
                     let tmp = scrambled[i];
                     scrambled[i] = scrambled[j];
                     scrambled[j] = tmp;
                 }
+                return scrambled.join("");
+            },
+            scrambleWord: () => {
+                let wordCount = FirebaseService.getWordsCount();
+                // count.then(s => console.log(s.val(), s.numChildren(), "SND"));
+                // let getter = FirebaseService.getWord(3);
+                // getter.then(s => console.log(s.val(), s.numChildren(), "SND"));
+                let word, index;
+                // avoid word repeat
+                do {
+                    index = Math.round(Math.random() * (wordCount - 1));
+                    word = TestWords[index].toUpperCase();
+                } while(GameService._usedWords.indexOf(index) > -1);
 
-                GameService._usedWords.push(word);
+                let scrambled = GameService._scrambling(word);
+                GameService._usedWords.push(index);
 
                 return {
                     word: word,
