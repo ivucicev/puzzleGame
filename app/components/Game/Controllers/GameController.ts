@@ -1,8 +1,8 @@
 (() => {
     "use strict";
     angular.module('puzzleGame.Game')
-    .controller('GameController', ['GameService', '$location', 'FirebaseService', GameController]);
-    function GameController (GameService, $location, FirebaseService) {
+    .controller('GameController', ['GameService', '$location', 'FirebaseService', '$window', '$timeout', GameController]);
+    function GameController (GameService, $location, FirebaseService, $window, $timeout) {
 
         var self = this;
 
@@ -54,7 +54,12 @@
         }
 
         // times up!
-        this.timesUp = () =>  FirebaseService.setNewHighscore(400, "Nina").then(() => $location.path("highscores"));
+        this.timesUp = () =>  {
+            if (this.score > 0) {
+                let name = $window.prompt(`You scored ${this.score} points please enter your name`);
+                FirebaseService.setNewHighscore(this.score, name).then(() => $timeout($location.path("highscores")));
+            } else $location.path("highscores");
+        }
 
         // allow only characters
         this.keyValid = keyCode => keyCode >= 65 && keyCode <= 90;

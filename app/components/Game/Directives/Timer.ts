@@ -11,7 +11,7 @@
             link: (scope, element) => {
                 let intvl = null;
                 try {
-                    let timer = 40;
+                    let timer = 5;
                     intvl = $interval(() => {
                         element.text(--timer);
                         if (timer == 0) {
