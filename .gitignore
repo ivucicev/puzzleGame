@@ -8,6 +8,12 @@ app/resources/bower
 # Grunt related
 .grunt
 
+# map and js
+*.js
+/.vscode
+*.json
+*.map
+
 # IDE and MacOSX specific
 .idea
 .DS_Store
