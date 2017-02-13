@@ -1,11 +1,38 @@
-<div class="game-view text-center" class="row" ng-keydown="Game.handleUserInput">
-    <h1>Time:
-        <timer>40</timer>
-    </h1>
-    <h1>Score: {{Game.score}}</h1>
-    <h2>{{Game.generatedWord.scrambled}}</h2>
-    <h2 class="underscores" ng-repeat="char in Game.answer track by $index">
-        {{char ? char : '_'}} &nbsp;
-    </h2>
+<div class="row mt">
+    <div class="col-md-12 text-center">
+        <button ng-click="Game.goToHome()" type="button" class="btn btn-lg btn-success button highscores-button">
+                <span class="glyphicon glyphicon-home"></span>
+        </button>
+    </div>
+</div>
+<div class="row mt5">
+    <div class="game-view text-center row">
+        <div class="col-md-3 col-md-offset-3">
+            <h1>Time:
+                <timer>40</timer>
+            </h1>
+        </div>
+        <div class="col-md-3">
+            <h1>Score: {{Game.score}}</h1>
+        </div>
+    </div>
+</div>
+<div class="row text-center mt5">
+    <div class="col-md-12">
+        <h1>{{Game.generatedWord.scrambled}}</h1>
+    </div>
+    <div class="col-md-12">
+        <h2 class="underscores" ng-repeat="char in Game.answer track by $index">
+            {{char ? char : '_'}} &nbsp;
+        </h2>
+    </div>
+</div>
+<div class="row text-center">
+    <div class="col-md-12">
+        <h2>Whats your name?</h2>
+    </div>
+    <div class="col-md-12">
+        Ivan
+    </div>
 </div>
 <keypress></keypress>

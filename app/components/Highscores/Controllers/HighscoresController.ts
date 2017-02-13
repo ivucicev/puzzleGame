@@ -1,8 +1,8 @@
 (() => {
     "use strict";
     angular.module('puzzleGame.Highscores')
-    .controller('HighscoresController', ['FirebaseService', '$timeout', HighscoresController]);
-    function HighscoresController (FirebaseService, $timeout) {
+    .controller('HighscoresController', ['FirebaseService', '$timeout', '$location', HighscoresController]);
+    function HighscoresController (FirebaseService, $timeout, $location) {
         
         var self = this;
 
@@ -11,6 +11,9 @@
         this.init = () => {
             this.getHighscores();
         }
+
+        // go back
+        this.goToHome = () =>  $location.path("/");
 
         // get highscores from firebase
         this.getHighscores = () => {

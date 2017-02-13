@@ -1,8 +1,16 @@
-<div class="row">
-    <div class="col-md-12 text-center">
-        <div class="btn-group-vertical">
-            <button type="button" class="btn btn-lg btn-success" ng-click="Home.goToGame">Play!</button>
-            <button type="button" class="btn btn-lg btn-info" ng-click="Home.goToHighscores">Highscores</button>
+<div class="row mt">
+    <div class="col-md-12 text-center header-title">
+        <h1>Puzzle Game</h1>
+        <br>
+    </div>
+    <div class="col-md-12 text-center btns">
+        <div>
+            <button type="button" class="btn btn-lg btn-success button" ng-click="Home.goToGame()">
+                <span class="glyphicon glyphicon-play"></span>
+            </button>
+            <button type="button" class="btn btn-lg btn-info button" ng-click="Home.goToHighscores()">
+                <span class="glyphicon glyphicon-list"></span>                
+            </button>
         </div>
     </div>
 </div>

@@ -16,6 +16,9 @@
             this.nextWord();
         }
 
+        // go back
+        this.goToHome = () =>  $location.path("/");
+
         // reset && get next word
         this.nextWord = () => {
             this.currentScoreDecrease = 0;

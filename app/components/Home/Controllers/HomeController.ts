@@ -8,7 +8,7 @@
 
         this.goToHighscores = () => $location.path("highscores");
 
-        this.goToGame = () => $location.path("game");
+        this.goToGame = () =>  $location.path("game");
 
     }
 })();

@@ -1,10 +1,20 @@
+<div class="row mt">
+    <div class="col-md-12 text-center">
+        <button ng-click="High.goToHome()" type="button" class="btn btn-lg btn-success button highscores-button">
+                <span class="glyphicon glyphicon-home"></span>
+        </button>
+    </div>
+</div>
 <div class="row text-center">
-    <h1>Highscores!</h1>
-    <div ng-repeat="(key, val) in High.highscores | orderBy: '-score' track by $index">
-        <div class="animated fadeIn">
-            <h1>{{$index+1}}.</h1>
-            <h2>{{val.score.name}}</h2>
-            {{val.score.score}}
+    <div class="col-md-12 text-center header-title">
+        <h1>Highscores</h1>
+        <br>
+    </div>
+    <div class="highscores" ng-repeat="(key, val) in High.highscores | orderBy: '-score' track by $index">
+        <div class="animated fadeIn row">
+            <div class="col-md-2 col-md-offset-3">{{$index+1}}.</div>
+            <div class="col-md-2">{{val.score.name}}</div>
+            <div class="col-md-2">{{val.score.score}}</div>
         </div>
     </div>
 </div>
