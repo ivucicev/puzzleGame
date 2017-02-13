@@ -4,7 +4,7 @@
     .service('GameService', ['FirebaseService', GameService]);
     function GameService (FirebaseService) {
         let GameService =  {
-            _usedWords: [],
+            _usedWordsIndexes: [],
             _scrambling: (word) => {
                 let scrambled = word.split("");
                 let l = scrambled.length;
@@ -23,11 +23,11 @@
                 // avoid word repeat
                 do {
                     index = Math.round(Math.random() * (wordCount - 1));
-                } while(GameService._usedWords.indexOf(index) > -1);
+                } while(GameService._usedWordsIndexes.indexOf(index) > -1);
 
                 word = TestWords[index].toUpperCase();
                 let scrambled = GameService._scrambling(word);
-                GameService._usedWords.push(index);
+                GameService._usedWordsIndexes.push(index);
 
                 return {
                     word: word,
@@ -35,7 +35,7 @@
                 }
 
             },
-            clearUsedWords: () => GameService._usedWords = []
+            clearUsedWords: () => GameService._usedWordsIndexes = []
         }
         return GameService;
     }
