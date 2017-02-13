@@ -1,10 +1,10 @@
 <div class="row text-center">
     <h1>Highscores!</h1>
-    <div ng-repeat="high in High.highscores | orderBy: '-score' track by $index">
+    <div ng-repeat="(key, val) in High.highscores | orderBy: '-score' track by $index">
         <div class="animated fadeIn">
             <h1>{{$index+1}}.</h1>
-            <h2>{{high.name}}</h2>
-            {{high.score}}
+            <h2>{{val.score.name}}</h2>
+            {{val.score.score}}
         </div>
     </div>
 </div>
