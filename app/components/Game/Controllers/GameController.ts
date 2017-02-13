@@ -1,8 +1,8 @@
 (() => {
     "use strict";
     angular.module('puzzleGame.Game')
-    .controller('GameController', ['GameService', GameController]);
-    function GameController (GameService) {
+    .controller('GameController', ['GameService', '$state', GameController]);
+    function GameController (GameService, $state) {
 
         var self = this;
 
@@ -48,7 +48,7 @@
         }
 
         this.timesUp = () => {
-            
+            $state.go("")
         }
 
         // allow only characters

@@ -7,15 +7,19 @@
             _usedWordsIndexes: [],
             currentWord: "",
             scrambleWord: (word) => {
+                
                 let scrambled = word.split("");
                 let l = scrambled.length;
+
                 for(let i = l - 1; i > 0; i--) {
                     const j = Math.floor(Math.random() * (i + 1));
                     let tmp = scrambled[i];
                     scrambled[i] = scrambled[j];
                     scrambled[j] = tmp;
                 }
+
                 return scrambled.join("");
+
             },
             getNewWord: () => {
 
