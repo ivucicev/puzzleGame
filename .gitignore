@@ -5,7 +5,6 @@ node_modules
 npm
 app/resources/bower
 typings/
-*.js
 /.vscode
 *.json
 *.map
