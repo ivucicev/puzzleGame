@@ -5,8 +5,6 @@ node_modules
 npm
 typings/
 /.vscode
-*.json
-*.map
 
 # Grunt related
 .grunt
