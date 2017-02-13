@@ -4,8 +4,11 @@
     .service('GameService', ['FirebaseService', GameService]);
     function GameService (FirebaseService) {
         let GameService =  {
+
             _usedWordsIndexes: [],
             currentWord: "",
+
+            // return scrambled word
             scrambleWord: (word) => {
                 
                 let scrambled = word.split("");
@@ -21,6 +24,8 @@
                 return scrambled.join("");
 
             },
+
+            // get new word from firebase, avoid repeating
             getNewWord: () => {
 
                 let wordCount = FirebaseService.getWordsCount();
@@ -37,9 +42,15 @@
 
             },
             
+            // clear used words
             clearUsedWords: () => GameService._usedWordsIndexes = [],
+
+            // check if word that user entered is good
             validateWord: w => w === GameService.currentWord, 
+
         }
+
         return GameService;
+
     }
 })();
