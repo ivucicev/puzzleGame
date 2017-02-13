@@ -4,16 +4,15 @@
 node_modules
 npm
 app/resources/bower
-typings
-
-# Grunt related
-.grunt
-
-# map and js
+typings/
 *.js
 /.vscode
 *.json
 *.map
+
+# Grunt related
+.grunt
+
 
 # IDE and MacOSX specific
 .idea
