@@ -45,13 +45,12 @@
         // score penalty
         this.decreaseScore = () => {
             this.currentScoreDecrease++;
-            this.currentIndex--;
-            this.answer[this.currentIndex] = undefined;
+            this.answer[--this.currentIndex] = undefined;
         }
 
         // add score according to penalty
         this.increaseScore = () => {
-            let score = ~~(Math.pow(1.95, (this.generatedWord.word.length / 3))) - this.currentScoreDecrease;
+            let score = ~~(1.95 << (this.generatedWord.word.length / 3)) - this.currentScoreDecrease;
             this.score += score >= 0 ? score : 0;
         }
 
