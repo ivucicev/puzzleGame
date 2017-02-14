@@ -11,13 +11,15 @@
         this.currentIndex = 0;
         this.score = 0;
         this.currentScoreDecrease = 0;
-
-        this.init = () => {
-            this.nextWord();
-        }
+        
+        // init
+        this.init = () => this.nextWord();
 
         // go back
         this.goToHome = () =>  $location.path("/");
+        
+        // restartsGame
+        this.restartGame = () => $window.location.reload();
 
         // reset && get next word
         this.nextWord = () => {
@@ -49,7 +51,7 @@
 
         // add score according to penalty
         this.increaseScore = () => {
-            let score = Math.floor(Math.pow(1.95, (this.generatedWord.word.length / 3))) - this.currentScoreDecrease;
+            let score = ~~(Math.pow(1.95, (this.generatedWord.word.length / 3))) - this.currentScoreDecrease;
             this.score += score >= 0 ? score : 0;
         }
 
@@ -78,11 +80,6 @@
                 this.decreaseScore();
             }
         }
-
-        // restartsGame
-        this.restartGame = () => {
-            $window.location.reload();
-        } 
 
         // "ctor()"
         this.init();
